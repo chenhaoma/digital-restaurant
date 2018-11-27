@@ -154,29 +154,29 @@ class CommandController(private val commandGateway: CommandGateway, private val 
 /**
  * A request for creating a Courier
  */
-data class CreateCourierRequest(val firstName: String, val lastName: String, val maxNumberOfActiveOrders: Int)
+data class CreateCourierRequest(val firstName: String = "", val lastName: String = "", val maxNumberOfActiveOrders: Int = 0)
 
 /**
  * A request for creating a Customer/Consumer
  */
-data class CreateCustomerRequest(val firstName: String, val lastName: String, val orderLimit: BigDecimal)
+data class CreateCustomerRequest(val firstName: String = "", val lastName: String = "", val orderLimit: BigDecimal = BigDecimal(0))
 
 /**
  * A request for creating an Order
  */
-data class CreateOrderRequest(val customerId: String, val restaurantId: String, val orderItems: List<OrderItemRequest>)
+data class CreateOrderRequest(val customerId: String = "", val restaurantId: String = "", val orderItems: List<OrderItemRequest> = ArrayList())
 
 /**
  * A request for creating a Restaurant
  */
-data class CreateRestaurantRequest(val name: String, val menuItems: List<MenuItemRequest>)
+data class CreateRestaurantRequest(val name: String = "", val menuItems: List<MenuItemRequest> = ArrayList())
 
 /**
  * A Menu item request
  */
-data class MenuItemRequest(val id: String, val name: String, val price: BigDecimal)
+data class MenuItemRequest(val id: String = "", val name: String = "", val price: BigDecimal = BigDecimal(0))
 
 /**
  * An Order item request
  */
-data class OrderItemRequest(val id: String, val name: String, val price: BigDecimal, val quantity: Int)
+data class OrderItemRequest(val id: String = "", val name: String = "", val price: BigDecimal = BigDecimal(0), val quantity: Int = 0)

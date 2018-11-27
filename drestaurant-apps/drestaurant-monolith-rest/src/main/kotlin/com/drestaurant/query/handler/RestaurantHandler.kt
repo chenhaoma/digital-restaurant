@@ -4,7 +4,7 @@ import com.drestaurant.query.FindAllRestaurantsQuery
 import com.drestaurant.query.FindRestaurantQuery
 import com.drestaurant.query.model.MenuItemEmbedable
 import com.drestaurant.query.model.RestaurantEntity
-import com.drestaurant.query.model.RestaurantMenuEmbedable
+//import com.drestaurant.query.model.RestaurantMenuEmbedable
 import com.drestaurant.query.repository.RestaurantRepository
 import com.drestaurant.restaurant.domain.api.RestaurantCreatedEvent
 import org.axonframework.config.ProcessingGroup
@@ -27,9 +27,9 @@ internal class RestaurantHandler(private val repository: RestaurantRepository, p
             val menuItem = MenuItemEmbedable(item.id, item.name, item.price.amount)
             menuItems.add(menuItem)
         }
-        val menu = RestaurantMenuEmbedable(menuItems, event.menu.menuVersion)
+//        val menu = RestaurantMenuEmbedable(menuItems, event.menu.menuVersion)
 
-        val record = RestaurantEntity(event.aggregateIdentifier.identifier, aggregateVersion, event.name, menu, emptyList())
+        val record = RestaurantEntity(event.aggregateIdentifier.identifier, aggregateVersion, event.name, menuItems, event.menu.menuVersion, emptyList())
         repository.save(record)
 
         /* sending it to subscription queries of type FindRestaurantQuery, but only if the restaurant id matches. */
